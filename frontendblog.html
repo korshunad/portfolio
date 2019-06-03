@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Frontend for Beginners ● Ana Makarochkina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet"  type="text/css" href="main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+</head>
+<body class="">
+  <nav class="flex flex-row items-center justify-between ph5 pv3">
+    <div class="flex flex-row justify-start w-100 mw5 items-center">
+    <img src="images/logo.svg" class="mw4 w-100 h-auto" alt="Korshunad logo of Ana Makarochkina"/>
+    </div>
+    <div class="flex flex-column justify-center items-center">
+      <span class='b f4'>Ana Makarochkina</span>
+      <span class="fw3 f4">Frontend Developer</span>
+    </div>
+    <ul class="flex flex-row justify-between mw5 w-100">
+      <li>
+        <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+          Hire Me
+        </a>
+      </li>
+      <li>
+        <a href="about.html" title="About Ana Makarochkina" class="link"/>
+          About
+        </a>
+      </li>
+    </ul>
+  </nav>
+  <main class="pa5">
+    <section class="relative" style="height:60vh;">
+      <div class="absolute w-50" style="left:0;z-index:1; bottom: 0">
+      <h1 class="mb0 lh-title">Frontend for Beginners</h1>
+      <h3 class="fw4 lh-copy">Building a React.js powered blog with automated code quality control</h3>
+      <button class="ttu tracked f3 br2" onclick="window.open('https://highstart.dev')">Visit site</button>
+      </div>
+      <img src="images/frontend_blog.png" class="absolute w-60 h-auto" style="right:0;top:auto; bottom:0; z-index:0" />
+    </section>
+    <section class="pv5">
+      <h2>Overview</h2>
+      <p class="lh-copy mw7">The goal was to build a blog about web development where different authors can add their articles in code and overall collaborate on enhancing the blog’s functionality.</p>
+      <p class="lh-copy mw7"> It was achieved by using current technologies (React.js, Gatsby.js, Mocha testing engine) and collaborative tools (Github, CircleCI).</p>
+    </section>
+    <section class="pb5">
+      <h2>Blog preparation and development</h2>
+      <h3>Problem</h3>
+      <p class="lh-copy mw7">When planning the blog, I wanted to build it with modern technologies, which are also easy to pick up by other developers who may be collaborating with me on the project. Also, I didn’t want to lock down into solutions that add much complexity from the very beginning. However, I also looked for basic blog functionality to be present as well, such as templates for the articles and automatic web pages generation for new articles.</p>
+      <h3>Solution</h3>
+      <p class="lh-copy mw7">The solution for the modern and easy to start collaborating blog was the Gatsby js framework. It leverages React.js and Webpack for frontend development, GraphQL query language for data management, and an extensive system of plugins.</p>
+      <p class="lh-copy mw7">To set up the blog, I performed the following steps:</p>
+      <ol>
+        <li class="mw7 lh-copy">
+        Generate a basic Gatsby.js project;
+        </li>
+        <li class="mw7 lh-copy">
+        Add main layout components: header, footer, column structure for the articles, code the about page;
+        </li>
+        <li>
+        <p class="mw7 lh-copy">
+        Setup the templates for the blog post pages, set up an automatic generation of the new blog pages and new tags pages
+        </p>
+        <script src="https://gist.github.com/korshunad/3349a73b240a681bfba42a5561304b8d.js"></script>
+        </li>
+        <li class="mw7 lh-copy">
+        Group the articles into main website categories - articles and tutorials on the home page and respective articles and tutorials pages with  Array.map() method;
+        </li>
+        <li>
+        <p class="mw7 lh-copy">
+        Setup the template for the social sharing meta tags automatically generated for each blog page;
+        </p>
+        <script src="https://gist.github.com/korshunad/e0777036a089b6c1037b02b93d4e842b.js"></script>
+        </li>
+        <li class="mw7 lh-copy">
+        Setup automatic deployment to Netlify;
+        <img src="images/circleCIdeploys.png" class="mw6 w-100 h-auto"/>
+        <img src="images/production_published.png" class="mw7 w-100 h-auto"/>
+        </li>
+      </ol>
+    </section>
+    <section class="pb5">
+      <h2>Code Quality</h2>
+      <h3>Problem 1: Linting code</h3>
+        <p class="mw7 lh-copy">
+        Code quality revolves mainly about code readability and styling conventions used in the repository. In the case of this project, maintaining code quality is important both for myself and any other collaborators.
+        </p>
+        <p class="mw7 lh-copy">
+        Commonly it is achieved by setting up linters, that highlight all the syntax errors and styling inconsistencies.
+        </p>
+      <h3>Solution 1: Linting code</h3>
+        <p class="mw7 lh-copy">
+        One of the best linters for Javascript is JSLint. Gatsby already uses JSLint, but by default, it lints everything during the development process and does not restrict pushing poorly formatted code.
+        </p>
+        <p class="mw7 lh-copy">
+        Running JSLint commands in the project as is checks the whole project’s codebase and may also automatically fix minor errors.
+        </p>
+        <p class="mw7 lh-copy">
+        To check only the code that was changed and staged for the commit:
+        </p>
+        <ul class="lh-copy">
+          <li class="flex flex-row items-start mb4">
+          I added the husky package that allows using git hooks, which may prevent the commits. I tested it to show the commit message when a commit is made and then configured to run lint-staged:
+          <img src="images/husky_incomplete.png" class="ml3 mw5 w-100 h-auto">
+          </li>
+          <li class="flex flex-row items-start mb4">
+          Then I added the lint-staged package and configured it to lint only the committed code:
+          <img src="images/lint-staged.png" class="ml3 mw5 w-100 h-auto">
+          </li>
+        </ul>
+      <h3>Problem 2: Linting commits</h3>
+        <p class="mw7 lh-copy">
+        When committing the added or changed code, developers may use different conventions or no conventions at all. This may result in huge commits or small commits, which, most importantly, may be hard to debug by the author or teammates.
+        </p>
+        <p class="mw7 lh-copy"> Therefore it is one of the best practices to structure the commits in the form of “<type>[optional scope]: <description>”, where type is a category of the code change, and description brings more details to it.
+        </p>
+      <h3>Solution 2: Linting commits</h3>
+        <p class="mw7 lh-copy">
+        Forcing developers to remember the styling convention may make life just harder. Therefore I added “commit-lint” that checks the commit message to conform to the “<type>[optional scope]: <description>” format and reminds of the existing types if the type is off.
+        </p>
+        <p class="mw7 lh-copy">
+        For that, I added another package “commit-lint” and configured the husky setup to check the text of the commit, additionally to checking the files being committed.
+        </p>
+        <p class="mw7 lh-copy">
+        Commit-lint setup in the package.json:
+        </p>
+        <img src="images/commitlint.png"/>
+        <p class="mw7 lh-copy">
+        New husky setup:
+        </p>
+        <img src="images/husky_complete.png"/>
+        <p class="mw7 lh-copy">
+        After all the setup the commit checks looks like the following:
+        </p>
+        <ul>
+          <li>
+            <p class="mw7 lh-copy">
+            Commit staged files with a message:
+            </p>
+            <img src="images/start_lint.png"/>
+          </li>
+          <li>
+            <p class="mw7 lh-copy">
+            Linter runs and checks selected files:
+            </p>
+            <img src="images/running_linters.png"/>
+          </li>
+          <li>
+            <p class="mw7 lh-copy">
+            Commit-lint checks if the commit message is formatted properly:
+            </p>
+            <img src="images/husky_passing.png"/>
+          </li>
+          <li>
+            <p class="mw7 lh-copy">
+            If formatting is off, commit-lint raises a warning:
+            </p>
+            <img src="images/commitlint_fail.png"/>
+          </li>
+        </uL>
+    </section>
+    <section class="pb5">
+      <h2>Automated Testing</h2>
+      <h3>Problem</h3>
+        <p class="mw7 lh-copy">
+        Programming collaboratively is based on trust. Certainly, you are reviewing the teammate’s code in the pull request, and optionally even pull the branch they worked in to test changes locally. However, it is great to have the tests run automatically to see new changes do not break that main functionality.
+        </p>
+      <h3>Solution</h3>
+        <p class="mw7 lh-copy">
+        The result I was approaching was the following: when a pull request is made to the master branch, the automated tests run to see whether existing pages are displayed correctly. This is done with 3 main components:
+        </p>
+        <ul class="mw7 lh-copy">
+          <li>
+          CircleCi project setup that runs tests when a pull request is made to the master branch, and displays pass or fail flag on the pull request page;
+          </li>
+          <li>
+          Mocha testing engine, that is used for writing the tests, ensuring the web pages contain correct content when loaded;
+          </li>
+          <li>
+          Puppeteer, the Headless Chrome Node API that opens web pages in Chrome and gets their content
+          </li>
+        </ul>
+        <p class="mw7 lh-copy">
+        The steps to set up were the following:
+        <ol class="lh-copy">
+          <li class="mb3">
+          Setup the CircleCI project in the CircleCI project with the frontendForBeginners repository;
+          </li>
+          <li class="mb3">
+          Add the .circleci/config.yml configuration file and validate it with circleCI CLI. Validation was necessary as I ran into syntax errors when copying the config code into VIM code editor and the .yml whitespace syntax is pretty strict;
+          <img src="images/circleCI_config.png"/>
+          </li>
+          <li class="mb3">
+          Serve the built version of the blog (static website, build folder) with Express.js.
+          <img src="images/expressjs_server.png"/>
+          </li>
+          <li class="mb3">
+          Write Mocha tests, that run the website on a local server and open the headless chrome instance, then get specific pages with Puppeteer and check if they contain the title element of the page.
+          <img src="images/mocha_test_start.png"/>
+          <p>
+          Close the chrome browser and server when the tests end
+          </p>
+          <img src="images/close_test_server.png"/>
+          </li>
+          <li class="mb3">
+          As the tests rely on the built version of the website, add the build and then test command to the .circleci/config.yml file
+          <img src="images/circleCIconfig_test.png"/>
+          </li>
+        </ol>
+          <p>
+          As a result, the pull request can be merged into master after the code review and after the CircleCI tests have passed
+          </p>
+          <img src="images/circleCI_pass.png"/>
+          <p>
+          And this is how the tests are passing
+          </p>
+      <video controls width="100%">
+        <source src="./running_tests.mov"
+                type="video/mp4">
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+    </section>
+    <section class="pb5">
+      <h2>Collaboration</h2>
+      <h3>Problem</h3>
+      <p class="lh-copy mw7">It may be hard to communicate the project structure and development process, as well as the code quality assurance measure.</p>
+      <h3>Solution</h3>
+      <p class="lh-copy mw7">Up-to-date documentation in the README.md file, which describes the folder structure and main commands used to run the development server and teste. It was tested and then improved with one of the collaborators.</p>
+      <video controls width="100%">
+        <source src="./Readme.mov"
+                type="video/mp4">
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+
+    </section>
+    <section class="pb5">
+      <h2>Overall result</h2>
+
+      <p class="lh-copy mw7">The extensible blog is written with React.js, leveraging rich Gatsby.js plugins ecosystem and documentation, ensuring code quality with linting and automated testing.</p>
+      <video controls width="100%">
+
+
+        <source src="./blog_demo.mov"
+                type="video/mp4">
+
+        Sorry, your browser doesn't support embedded videos.
+      </video>
+    </section>
+  </main>
+  <footer>
+  </footer>
+</body>
+</html>
