@@ -28,6 +28,12 @@ nav ul, footer ul {
 p {
   line-height: 1.5em;
 }
+main {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
 @media (min-width: 60em) {
   .mw11rem-l {
     max-width: 11rem;
