@@ -41,6 +41,7 @@ nav ul li a, footer ul li a {
   font-size: 0.8em;
 }
 nav ul li a, footer ul li a, p a {
+  cursor: pointer;
   text-decoration: none;
   padding: 3px;
   position: relative;
