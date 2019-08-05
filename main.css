@@ -150,4 +150,5 @@ video {
 pre {
   width: 100%;
   overflow-x: scroll;
+  white-space: pre-wrap;
 }

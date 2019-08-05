@@ -1,14 +1,51 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <title>Frontend for Beginners ● Ana Makarochkina</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <title>Frontend for Beginners ● Ana Makarochkina</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
   <link rel="icon" href="favicon.ico" type="image/x-icon" />
 
-    <link rel="stylesheet"  type="text/css" href="main.css"/>
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+  <link rel="stylesheet"  type="text/css" href="main.css"/>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+  <style>
+    @media (max-width: 80em) {
+      section p, section ul, section ol, pre {
+        max-width: 40rem;
+      }
+    }
+
+    @media (min-width: 80em) {
+      section p, section ul, section ol, pre {
+        max-width: 60rem;
+      }
+    }
+    .lh-copy {
+      line-height: 1.7;
+    }
+    ::selection {
+      background: #b20a44;
+      color: #f7f7f4;
+    }
+    .text-highlight {
+      background-color: white;
+      color: #b20a44;
+    }
+    section li {
+      margin-top:2rem;
+    }
+    h2 {
+      margin-top:0;
+    }
+    h4 {
+    margin-top:2rem;
+    margin-bottom:1rem;
+    }
+  </style>
+  	<link href="prism.css" rel="stylesheet" />
+
+
 </head>
 <body class="mw9 center">
   <nav class="flex flex-row flex-nowrap-l flex-wrap items-center justify-between ph5-l ph4-m ph3 pv3">
@@ -57,16 +94,20 @@
     </section>
     <section class="pv5">
       <h2 class="f2-ns f3">Context</h2>
-      <p class="lh-copy ">Frontend for Beginners is a blog about front-end development, tailored to beginners. It is  joint effort of the team of 4 people, and was in the active content and web development phase in May - June 2019. My roles in the project were developer and articles writer.</p>
+      <p class="lh-copy ">Frontend for Beginners is a blog about front-end development, tailored to beginners. It is a joint effort of the team of 4 people and was in the active content and web development phase in May - June 2019. My roles in the project were the developer and articles writer.</p>
       <h2 class="f2-ns f3">Overview</h2>
 
       <p class="lh-copy ">The goal was to build a blog about web development where different authors can add their articles in code and overall collaborate on enhancing the blog’s functionality.</p>
-      <p class="lh-copy "> It was achieved by using current technologies (React.js, Gatsby.js, Mocha testing engine) and collaborative tools (Github, CircleCI).</p>
+      <p class="lh-copy "> It was achieved by using current technologies:<br/>
+      <span class="text-highlight">React.js, Gatsby.js, Mocha testing engine</span><br/>
+      and collaborative tools:<br/>
+      <span class="text-highlight">Github, CircleCI</span>.</p>
     </section>
     <section class="pb5">
-      <h2 class="f2-ns f3">Blog preparation and development</h2>
+      <h2 class="f2-ns f3 mt0">Blog preparation and development</h2>
       <h3 class="f3-ns f4">Problem</h3>
-      <p class="lh-copy ">When planning the blog, I wanted to build it with modern technologies, which are also easy to pick up by other developers who may be collaborating with me on the project. Also, I didn’t want to lock down into solutions that add much complexity from the very beginning. However, I also looked for basic blog functionality to be present as well, such as templates for the articles and automatic web pages generation for new articles.</p>
+      <p class="lh-copy ">When planning the blog, I wanted to build it with modern technologies, which are also easy to pick up by other developers who may be collaborating with me on the project. Also, I didn’t want to lock down into solutions that add too much complexity from the very beginning.</p>
+      <p class="lh-copy ">However, I also looked for basic blog functionality to be present as well, such as templates for the articles and automatic web pages generation for new articles.</p>
       <h3 class="f3-ns f4">Solution</h3>
       <p class="lh-copy ">The solution for the modern and easy to start collaborating blog was the Gatsby js framework. It leverages React.js and Webpack for frontend development, GraphQL query language for data management, and an extensive system of plugins.</p>
       <p class="lh-copy ">To set up the blog, I performed the following steps:</p>
@@ -94,7 +135,9 @@
         </li>
         <li class=" lh-copy">
         Setup automatic deployment to Netlify;
+        <br/>
         <img src="images/circleCIdeploys.png" class="mw6 w-100 h-auto"/>
+        <br/>
         <img src="images/production_published.png" class=" w-100 h-auto"/>
         </li>
       </ol>
@@ -118,14 +161,26 @@
         <p class=" lh-copy">
         To check only the code that was changed and staged for the commit:
         </p>
-        <ul class="lh-copy">
+        <ul class="lh-copy pl0">
           <li class="flex flex-column items-start mb4">
           I added the husky package that allows using git hooks, which may prevent the commits. I tested it to show the commit message when a commit is made and then configured to run lint-staged:
-          <img src="images/husky_incomplete.png" class="ml3 mw5 h-auto">
+          <pre><code class="language-json">
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },</code></pre>
           </li>
           <li class="flex flex-column items-start mb4">
-          Then I added the lint-staged package and configured it to lint only the committed code:
-          <img src="images/lint-staged.png" class="ml3 mw5 h-auto">
+          Then I added the lint-staged package and set it to lint only the committed code:
+
+          <pre><code class="language-json">
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ]
+  },</code></pre>
           </li>
         </ul>
       <h3 class="f3-ns f4">Problem 2: Linting commits</h3>
@@ -141,41 +196,109 @@
         <p class=" lh-copy">
         For that, I added another package “commit-lint” and configured the husky setup to check the text of the commit, additionally to checking the files being committed.
         </p>
-        <p class=" lh-copy">
+        <h4 class=" lh-copy">
         Commit-lint setup in the package.json:
-        </p>
-        <img src="images/commitlint.png"/>
-        <p class=" lh-copy">
+        </h4>
+          <pre><code class="language-json">
+  "commitlint": {
+    "rules": {
+      "type-empty": [ // to prevent adding commits with no category, no type
+        2,
+        "never"
+      ],
+      "header-min-length": [
+        2,
+        "always",
+        3
+      ],
+      "type-enum": [ // to specify types that can be used
+        2,
+        "always",
+        [
+          "feat",
+          "fix",
+          "docs",
+          "style",
+          "refactor",
+          "test",
+          "revert",
+          "setup"
+        ]
+      ]
+    }
+  },</code></pre>
+        <h4 class=" lh-copy">
         New husky setup:
-        </p>
-        <img src="images/husky_complete.png"/>
-        <p class=" lh-copy">
-        After all the setup the commit checks looks like the following:
-        </p>
+        </h4>
+          <pre><code class="language-json">
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "lint-staged"
+    }
+  },</code></pre>
+        <h4 class=" lh-copy">
+        After all the setup, the commit checks looks like the following:
+        </h4>
         <ul>
           <li>
             <p class=" lh-copy">
             Commit staged files with a message:
             </p>
-            <img src="images/start_lint.png"/>
+            <pre class="language-bash"><code>
+$ git commit -m 'test: check if lint-staged and commit-lint are working'
+husky > pre-commit (node v10.15.3)
+            </code></pre>
           </li>
           <li>
             <p class=" lh-copy">
             Linter runs and checks selected files:
             </p>
-            <img src="images/running_linters.png"/>
+            <pre class="language-bash"><code>$ git commit -m 'test: check if lint-staged and commit-lint are working'
+husky > pre-commit (node v10.15.3)
+  ↓ Stashing changes... [skipped]
+    → No partially saved files found...
+  ❯ Running linters...
+    ❯ Running tasks for *.js
+      ∷ eslint --fix
+        git add</code></pre>
           </li>
           <li>
             <p class=" lh-copy">
             Commit-lint checks if the commit message is formatted properly:
             </p>
-            <img src="images/husky_passing.png"/>
+            <pre class="language-bash"><code>$ git commit -m 'test: check if lint-staged and commit-lint are working'
+husky > pre-commit (node v10.15.3)
+  ↓ Stashing changes... [skipped]
+    → No partially saved files found...
+  ✓ Running linters...
+husky > commit-msg (node v10.15.3)
+
+⧗  input: test: check if lint-staged and commit-lint are working
+✓  found 0 problems, 0 warnings
+   (Need help? -> https://github.com/conventional-changelog/commitlint#what-is-commitlint)
+
+[master 6e36fcf] test: check if lint-staged and commit-lint are working
+ 1 file changed, 7 insertions(+)
+ create mode 100644 app.js
+</code></pre>
           </li>
           <li>
             <p class=" lh-copy">
             If formatting is off, commit-lint raises a warning:
             </p>
-            <img src="images/commitlint_fail.png"/>
+            <pre class="language-bash"><code>$ git commit -m 'wrongtype: test wrong commit format'
+husky > pre-commit (node v10.15.3)
+No staged files match any of provided globs.
+husky > commit-msg (node v10.15.3)
+
+⧗  input: wrongtype: test wrong commit format
+✖  type must be one of [feat, fix, docs, style, refactor, test, revert, setup] [type-enum]
+✖  found 1 problems, 0 warnings
+   (Need help? -> https://github.com/conventional-changelog/commitlint#what-is-commitlint)
+
+husky > commit-msg hook failed (add --no-verify to bypass)
+</code></pre>
           </li>
         </uL>
     </section>
@@ -208,23 +331,100 @@
           </li>
           <li class="mb3">
           Add the .circleci/config.yml configuration file and validate it with circleCI CLI. Validation was necessary as I ran into syntax errors when copying the config code into VIM code editor and the .yml whitespace syntax is pretty strict;
-          <img src="images/circleCI_config.png"/>
+          <br>
+          config.yml file:
+            <pre class="language-yml"><code># Javascript Node CircleCI 2.0 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2
+jobs:
+  build:
+    docker:
+      # specify the version you desire here
+      - image: circleci/node:latest-browsers
+
+        # Specify service dependencies here if necessary
+        # CircleCI maintains a library of pre-built images
+        # documented at https://circleci.com/docs/2.0/circleci-images/
+        # - image: circleci/mongo:3.4.4
+
+    working_directory: ~/repo
+
+    steps:
+        - checkout
+
+          # Download and cache dependencies
+        - restore_cache:
+            keys:
+              - v1-dependencies-{{ checksum "package.json" }}
+                # fallback to using the latest cache if no exact match is found
+              - v1-dependencies-
+
+        - run: npm install
+
+        - save_cache:
+            paths:
+              - node_modules
+            key: v1-dependencies-{{ checksum "package.json" }}</code></pre>
           </li>
           <li class="mb3">
           Serve the built version of the blog (static website, build folder) with Express.js.
-          <img src="images/expressjs_server.png"/>
+          server-test.js:
+          <pre class="language-js"><code>const express = require('express');
+const app = express();
+
+const ejs = require('ejs');
+
+let server;
+
+app.use(express.static('public'));
+server = app.listen(3000, () => console.log('Example app listening on port 3000!'));
+</code></pre>
           </li>
           <li class="mb3">
-          Write Mocha tests, that run the website on a local server and open the headless chrome instance, then get specific pages with Puppeteer and check if they contain the title element of the page.
-          <img src="images/mocha_test_start.png"/>
+          Write Mocha tests, that run the website on a local server and open the headless chrome instance. Then get specific pages with Puppeteer and check if they contain the title element of the page.
+          <pre class="language-js"><code>describe('puppeteer checks the blog', () => {
+  before(async () => {
+    app.use(express.static('public'));
+    server = app.listen(3000, () => console.log('Example app listening on port 3000!'));
+    browser = await puppeteer.launch({
+      headless: true,
+      args: ['--no-sandbox', '--disable-setuid-sandbox']
+    });
+  });
+  it('open home page successfully', async () => {
+    const page = await browser.newPage();
+    await page.goto('http://127.0.0.1:3000/', {waitUntil: 'networkidle2'});
+    const bodyHTML = await page.evaluate(() => document.body.innerHTML);
+
+    const regex = /&lt;span class="code-right"&gt;(.*?)\&lt;/span&gt;/g;
+    let found = bodyHTML.match(regex);
+    expect(found[0]).to.equal("&lt;span class=\"code-right\"&gt;Hello World!&lt;/span&gt;");
+  });
+</code></pre>
           <p>
-          Close the chrome browser and server when the tests end
+          Close the Chrome browser and server when the tests end
           </p>
-          <img src="images/close_test_server.png"/>
+          <pre class="language-js"><code>after(async () => {
+  await browser.close();
+  server.close();
+});</code></pre>
           </li>
           <li class="mb3">
           As the tests rely on the built version of the website, add the build and then test command to the .circleci/config.yml file
-          <img src="images/circleCIconfig_test.png"/>
+          <pre class="language-yml"><code>        - run: npm install
+
+        # add build step to be able to run tests
+        - run: npm run build
+
+        - save_cache:
+            paths:
+              - node_modules
+            key: v1-dependencies-{{ checksum "package.json" }}
+
+        # run tests!
+        - run: npm run test</code></pre>
           </li>
         </ol>
           <p>
@@ -232,9 +432,9 @@
           </p>
           <img src="images/circleCI_pass.png"/>
           <p>
-          And this is how the tests are passing
+          And this is how the tests are passing.
           </p>
-      <iframe width="100%" height="315" src="https://www.youtube.com/embed/p8AgRRgx3ok" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="100%" height="315" src="https://www.youtube.com/embed/p8AgRRgx3ok?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </section>
     <section class="pb5">
       <h2 class="f2-ns f3">Collaboration</h2>
@@ -242,14 +442,14 @@
       <p class="lh-copy ">It may be hard to communicate the project structure and development process, as well as the code quality assurance measure.</p>
       <h3 class="f3-ns f4">Solution</h3>
       <p class="lh-copy ">Up-to-date documentation in the README.md file, which describes the folder structure and main commands used to run the development server and teste. It was tested and then improved with one of the collaborators.</p>
-      <iframe width="100%" height="515" src="https://www.youtube.com/embed/tlPfc7mg2_4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="100%" height="515" src="https://www.youtube.com/embed/tlPfc7mg2_4?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
     </section>
     <section class="pb5">
       <h2 class="f2-ns f3">Overall result</h2>
 
       <p class="lh-copy ">The extensible blog is written with React.js, leveraging rich Gatsby.js plugins ecosystem and documentation, ensuring code quality with linting and automated testing.</p>
-      <iframe width="100%" height="600" src="https://www.youtube.com/embed/4oV561ERLOM" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      <iframe width="100%" height="600" src="https://www.youtube.com/embed/4oV561ERLOM?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </section>
   </main>
   <footer class="flex flex-row-ns flex-column-reverse justify-center items-center pb4">
@@ -268,5 +468,9 @@
     </ul>
   </nav>
   </footer>
+  	<script src="prism.js"></script>
+
+    </body>
+    </html>
 </body>
 </html>
