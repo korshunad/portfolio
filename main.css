@@ -5,6 +5,9 @@ body {
   font-size: 1em;
   font-family: 'Montserrat', sans-serif;
 }
+
+html{scroll-behavior:smooth};
+
 a.card {
   color: #0c090a;
   background-color: #f9f9f7;
@@ -21,7 +24,7 @@ h2 {
 h3 {
   font-size: 1.618em;
 }
-nav ul, footer ul {
+nav ul, footer ul, section.sticky-l ul {
   text-decoration: none;
   list-style: none;
 }
@@ -40,21 +43,26 @@ main {
   }
 }
 
-nav ul li, footer ul li, p {
-position: relative; }
+nav ul li, footer ul li, p, section.sticky-l ul li {
+position: relative;
+}
+section.sticky-l ul li {
+  cursor: pointer;
+}
 
-nav ul li a, footer ul li a {
+nav ul li a, footer ul li a, section.sticky-l ul li a {
   font-size: 0.8em;
 }
-nav ul li a, footer ul li a, p a {
+nav ul li a, footer ul li a, p a, section.sticky-l ul li a {
   cursor: pointer;
   text-decoration: none;
   padding: 3px;
   position: relative;
   color: #8d1946;
   text-transform: lowercase;
-letter-tracking: 0.1em; }
-nav ul li a:before, footer ul li a:before, p a:before {
+letter-spacing: 0.1em; }
+
+nav ul li a:before, footer ul li a:before, p a:before, section.sticky-l ul li a:before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -64,9 +72,21 @@ nav ul li a:before, footer ul li a:before, p a:before {
   background-color: #8d1946;
   transform-origin: bottom right;
   transform: scaleX(0);
-transition: transform 0.5s ease; }
+transition: transform 0.2s ease-in-out; }
 
-nav ul li a:hover:before, nav ul li a:focus:before, nav ul li a.active, footer ul li a:hover:before, footer ul li a:focus:before, footer ul li a.active,p a:hover:before, p a:focus:before, p a.active {
+nav ul li a:hover:before,
+nav ul li a:focus:before,
+nav ul li a.active,
+footer ul li a:hover:before,
+footer ul li a:focus:before,
+footer ul li a.active,
+p a:hover:before,
+p a:focus:before,
+p a.active,
+section.sticky-l ul li a:hover:before,
+section.sticky-l ul li:hover a:before,
+section.sticky-l ul li a:focus:before,
+section.sticky-l ul li a.active:before {
   transform-origin: bottom left;
 transform: scaleX(1); }
 a.card {
@@ -105,6 +125,8 @@ a.card:hover::before, a.card:focus::before {
 }
 .sticky {
   position: sticky;
+  position: -webkit-sticky;
+
 }
 
 button {
@@ -151,4 +173,75 @@ pre {
   width: 100%;
   overflow-x: scroll;
   white-space: pre-wrap;
+}
+
+.gist {
+  max-height: 85vh;
+  overflow-y: scroll;
+}
+
+p, li {
+  line-height: 1.7;
+}
+::selection {
+  background: #b20a44;
+  color: #f7f7f4;
+}
+.text-highlight {
+  background-color: white;
+  color: #b20a44;
+}
+.shadow {
+box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+}
+@media (min-width: 60em) {
+  .sticky-l {
+  position: -webkit-sticky; /* Safari */
+
+    position: sticky;
+    max-width: 20em;
+    top: 0;
+    left: auto;
+    z-index: 1;
+    height:80vh;
+  }
+  section.sticky-l li {
+    padding-top:1rem;
+    padding-bottom:1rem;
+  }
+  h2 {
+    margin-top:2rem !important;
+  }
+}
+@media (max-width: 60em) {
+  section.sticky-l li {
+    padding-top:1rem;
+    padding-bottom:1rem;
+  }
+  h2 {
+    margin-top:1rem;
+  }
+}
+img, iframe {
+  z-index: 2;
+  position:relative;
+}
+@media (max-width: 80em) {
+  section p, section ul, section ol, pre {
+    max-width: 40rem;
+  }
+}
+
+@media (min-width: 80em) {
+  section p, section ul, section ol, pre {
+    max-width: 60rem;
+  }
+}
+section li {
+  padding-top:2rem;
+}
+
+h4 {
+margin-top:2rem;
+margin-bottom:1rem;
 }
