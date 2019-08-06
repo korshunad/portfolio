@@ -73,14 +73,14 @@
         <div class="flex flex-column">
     <section class="pt5-l pt4  content" id="intro">
       <h2 class="f2-ns f3">Context</h2>
-      <p class="lh-copy ">AlterTago is a productivity tool that I created for web masters,
+      <p >AlterTago is a productivity tool that I created for web masters,
       who care about SEO and accessability of their websites. AlterTago
       collects images from the target link and lets you add description
       to each of them. As a result you get a magical code snippet,
       that adds alt tags where needed.</p>
       <h2 class="f2-ns f3">Overview</h2>
 
-      <p class="lh-copy ">The goal of the project was to create the proof of concept for a script a and visual app that would help with adding ALT attributes to images on the webpages. The development goals for this project were the following:</p>
+      <p >The goal of the project was to create the proof of concept for a script a and visual app that would help with adding ALT attributes to images on the webpages. The development goals for this project were the following:</p>
       <ul class="lh-copy ">
         <li>
           Write the client-side script, that
@@ -103,14 +103,14 @@
         </li>
       </ul>
 
-      <p class="lh-copy ">At the last development stage I also had to circle back and fix the initial client-side script.</p>
+      <p >At the last development stage I also had to circle back and fix the initial client-side script.</p>
     </section>
     <section class="pt5-l pt4 content" id="client-side">
       <h2 class="f2-ns f3">Writing ALT attributes creating script on client-side</h2>
       <h3 class="f3-ns f4">Problem</h3>
-      <p class="lh-copy ">At first I had to write the script, that on page load checks existing alt attributes and attaches new ones.</p>
+      <p >At first I had to write the script, that on page load checks existing alt attributes and attaches new ones.</p>
       <h3 class="f3-ns f4">Solution</h3>
-      <p class="lh-copy ">In tackling the problem, I have chosen the more convenient structure of the Javascript object holding images' urls and descriptions, tested the script on multiple website and integrated the response from the backend API, transforming it from array with keywords to a string.</p>
+      <p >In tackling the problem, I have chosen the more convenient structure of the Javascript object holding images' urls and descriptions, tested the script on multiple website and integrated the response from the backend API, transforming it from array with keywords to a string.</p>
       <pre class="language-js w-100 overflow-x-auto"><code>const altTags = [
   {
     imgSrc: "https://example.com/some_pic.png",
@@ -149,30 +149,30 @@ document.addEventListener('DOMContentLoaded', getImages, false);
     </section>
     <section class="pt5-l pt4  content" id="api">
       <h2 class="f2-ns f3">Preparing backend API</h2>
-        <p class=" lh-copy">
+        <p>
           The backend API contains two requests: getting images from the website and getting descriptions for each image per request.
         </p>
       <h3 class="f3-ns f4">Using Google Vision API</h3>
-        <p class=" lh-copy">
+        <p>
           First set of problems and solutions was related to the usage of the Google Vision API.
         </p>
-        <p class=" lh-copy">
+        <p>
 I had to restrict the usage, as it has limited amount of free API calls. For that I used the <pre><code>express-rate-limit</code></pre> npm package, limiting the amount of the API request per window.
         </p>
-        <p class=" lh-copy">
+        <p>
 Also in the process of testing the API I found the problem that not all links to the images can be parsed by Google Vision APi, and you have to create the base64 encoding of the image. After some time figuring out documention and other programmers use cases, I decided to use the <pre><code>image-to-base64</code></pre>npm package, that would receive the link of the image and then return the base-64 encodin that I would pass further to the Google Vision APi.
         </p>
-        <p class=" lh-copy">
+        <p>
         Another issue was related to the usage of the API itself, as it is not perfect for the moment and sometimes returns unreliable results. After some testing I decided to limit the labels returns to those which are 90% topical, and in case there no such labels, just return those that were returned at all.
         </p>
       <h3 class="f3-ns f4">Parsing web pages for images</h3>
-        <p class=" lh-copy">
+        <p>
         As it turned out for me, it is quite easy to parse web pages with Node.js and extract relevant html tags, such as images. However, I needed to ensure that dynamic websites can be scraped as well, and those don't have most of the content at the moment of scraping.
         </p>
-        <p class=" lh-copy">
+        <p>
         After some research I decided to use <code>puppeter</code> to open headless chrome instance and get website content with it. Then to extract the actual images I had to use the <code>cheerio</code> package.
         </p>
-        <p class=" lh-copy">
+        <p>
         Having successfully tested online, I stumbled upon a problem of using <code>puppeteer</code> when the API was deployed onto Heroku platform. The API was failing until I found out that <code>puppeteer</code> setup should use the following parameters:
         </p>
         <pre class="language-js"><code>puppeteer
@@ -193,13 +193,13 @@ Also in the process of testing the API I found the problem that not all links to
     <section class="pt5-l pt4 content" id="editor">
       <h2 class="f2-ns f3">Creating visual editor app</h2>
       <h3 class="f3-ns f4">Creating React.js components and managing app state</h3>
-        <p class=" lh-copy">
+        <p>
           Interesting problems in this section, aside from figuring out design, layout and user experience, were to edit each image with the same form while looping through the images with slider and generate the script copying field.
           </p>
-        <p class=" lh-copy">
+        <p>
           For the images editing, as the images were wrapped into an external Slider component, I had to extract the current slide number from there and provide it to the rest of the app to save specific description of the image into an object with it source.
         </p>
-        <p class=" lh-copy">
+        <p>
           So I used
         </p>
         <pre class="language-js"><code>beforeChange: (current, next) => {
@@ -212,7 +212,7 @@ Also in the process of testing the API I found the problem that not all links to
   descr: currentImgLabel
 });
 </code></pre>
-        <p class=" lh-copy">
+        <p>
           For the script to be copied I ended up using the template string:
         </p>
         <pre class="language-js"><code>{`&lt;script&gt;
@@ -220,7 +220,7 @@ const altTags = [${altTags.map(tag => `\n  {"imgSrc": "${tag.imgSrc}", "descr": 
 ]
 &lt;/script&gt;`}
 </code></pre>
-        <p class=" lh-copy">
+        <p>
           To generate the following output:
         </p>
         <pre class="tl pa2 w-auto-l w-100 overflow-x-scroll " style="background-color: #0A4C3F;color: #F7FFF7;">
@@ -229,37 +229,37 @@ const altTags = [
   {"imgSrc": "https://korshunad.github.io/AlterTago/altertago_logo.bd3a74ce.svg", "descr": "Alter Tago logo"}
 ]
 &lt;/script&gt;</pre>
-        <p class=" lh-copy">
+        <p>
           that can be later copied and inserted into HTML page.
         </p>
 
 
       <h3 class="f3-ns f4">Planning empty, loading, success states for the app</h3>
-        <p class=" lh-copy">
+        <p>
           Also, as there is a GET request, I had to plan the empty, loading and having data states for the app. Empty state is empty form with basic information on the webpage, then animated logo replaces it when data is loading and then is further replaced with images slider when data arrives:</p>
-        <p class=" lh-copy">
+        <p>
           Step one: form
         </p>
         <img src="images/step1.png" class="mw7 w-100 h-auto"/>
-        <p class=" lh-copy">
+        <p>
           Step two: loader
         </p>
         <img src="https://korshunad.github.io/AlterTago/altertago_logo_animated.99b41b8b.svg" class="mw5 w-100 h-auto"/>
-        <p class=" lh-copy">
+        <p>
           Step three: image slider with the form
         </p>
         <img src="images/step3.png" class="mw7 w-100 h-auto"/>
-        <p class=" lh-copy">
+        <p>
           Step four: script tag and a link anchor to it appear when at least one description is saved
         </p>
         <img src="images/step3.png" class="mw7 w-100 h-auto"/>
-        <p class=" lh-copy">
+        <p>
           Step five: script tag is copied
         </p>
         <img src="images/step5.png" class="mw7 w-100 h-auto"/>
 
       <h3 class="f3-ns f4">Packaging and deploying the project</h3>
-        <p class=" lh-copy">
+        <p>
           As I was packaging the project with Parcel, the generated static website was in the dist folder and I had to anticipate it when deploying the website with gh-pages, which usually just takes the index.html from the root folder as the entry point.
         </p>
         <p class="lh-copy">The solution was to push a git subtree to the <code>gh-pages</code> with the following script, saved in <code>package.json</code> scripts to reuse later:</p>
@@ -268,7 +268,7 @@ const altTags = [
     <section class="pt5-l pt4">
       <h2 class="f2-ns f3">Overall result</h2>
 
-      <p class="lh-copy ">The proof of concept for automatic ALT attributes generation app.</p>
+      <p >The proof of concept for automatic ALT attributes generation app.</p>
     </section>
         </div>
       </div>
