@@ -9,6 +9,8 @@
 
     <link rel="stylesheet"  type="text/css" href="main.css"/>
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+    <link href="prism.css" rel="stylesheet" />
+    <script src="./scrollMenu.js"></script>
 </head>
 <body class="mw9 center">
   <nav class="flex flex-row flex-nowrap-l flex-wrap items-center justify-between ph5-l ph4-m ph3 pv3">
@@ -55,7 +57,21 @@
       </div>
       <img src="images/altertago.png" class="w-50-l w-100 h-auto"/>
     </section>
-    <section class="pv5">
+      <div class="relative flex flex-row-l flex-column overflow-visible">
+        <section class="sticky-l relative pv5-l pt4 h-100-l pr5-l">
+          <ul class="pl0 flex flex-column items-start">
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link active" data-href="#intro">Introduction</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#client-side">Client-side script</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#api">Backend API</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#editor">Visual Editor</a></li>
+          </ul>
+        </section>
+        <div class="flex flex-column">
+    <section class="pt5-l pt4  content" id="intro">
       <h2 class="f2-ns f3">Context</h2>
       <p class="lh-copy ">AlterTago is a productivity tool that I created for web masters,
       who care about SEO and accessability of their websites. AlterTago
@@ -89,14 +105,13 @@
 
       <p class="lh-copy ">At the last development stage I also had to circle back and fix the initial client-side script.</p>
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4 content" id="client-side">
       <h2 class="f2-ns f3">Writing ALT attributes creating script on client-side</h2>
       <h3 class="f3-ns f4">Problem</h3>
       <p class="lh-copy ">At first I had to write the script, that on page load checks existing alt attributes and attaches new ones.</p>
       <h3 class="f3-ns f4">Solution</h3>
       <p class="lh-copy ">In tackling the problem, I have chosen the more convenient structure of the Javascript object holding images' urls and descriptions, tested the script on multiple website and integrated the response from the backend API, transforming it from array with keywords to a string.</p>
-      <pre class="w-100 overflow-x-auto"><code>
-const altTags = [
+      <pre class="language-js w-100 overflow-x-auto"><code>const altTags = [
   {
     imgSrc: "https://example.com/some_pic.png",
     descr: "cute dog on a sunny valley"
@@ -130,9 +145,9 @@ const getImages = () => {
   }
 }
 document.addEventListener('DOMContentLoaded', getImages, false);
-      </code></pre>
+</code></pre>
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4  content" id="api">
       <h2 class="f2-ns f3">Preparing backend API</h2>
         <p class=" lh-copy">
           The backend API contains two requests: getting images from the website and getting descriptions for each image per request.
@@ -160,24 +175,22 @@ Also in the process of testing the API I found the problem that not all links to
         <p class=" lh-copy">
         Having successfully tested online, I stumbled upon a problem of using <code>puppeteer</code> when the API was deployed onto Heroku platform. The API was failing until I found out that <code>puppeteer</code> setup should use the following parameters:
         </p>
-        <pre><code>
-  puppeteer
-    .launch({
-      headless: true,
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-dev-shm-usage',
-        '--single-process'
-      ]
-    })
-        </code></pre>
-   <p class="lh-copy">and, even more importantly, use <code>puppeteer-heroku-buildpack</code>, installing missing dependencies for puppeteer to run on heroku</p>
-        <pre><code>
-        $ heroku buildpacks:add https://github.com/jontewks/puppeteer-heroku-buildpack
-        </code></pre>
+        <pre class="language-js"><code>puppeteer
+  .launch({
+    headless: true,
+    args: [
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      '--disable-dev-shm-usage',
+      '--single-process'
+    ]
+  })
+</code></pre>
+     <p class="lh-copy">and, even more importantly, use <code>puppeteer-heroku-buildpack</code>, installing missing dependencies for puppeteer to run on heroku</p>
+        <pre class="language-bash"><code>$ heroku buildpacks:add https://github.com/jontewks/puppeteer-heroku-buildpack
+</code></pre>
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4 content" id="editor">
       <h2 class="f2-ns f3">Creating visual editor app</h2>
       <h3 class="f3-ns f4">Creating React.js components and managing app state</h3>
         <p class=" lh-copy">
@@ -189,27 +202,24 @@ Also in the process of testing the API I found the problem that not all links to
         <p class=" lh-copy">
           So I used
         </p>
-        <pre><code>
-      beforeChange: (current, next) => {
-        this.setState({ oldSlide: current, activeSlide: next})
-      },
-      </code></pre>
+        <pre class="language-js"><code>beforeChange: (current, next) => {
+  this.setState({ oldSlide: current, activeSlide: next})
+},
+</code></pre>
       <p>in the Slider settings and used the <code>activeSlide</code> to control the proper altTags object creation:</p>
-        <pre><code>
-      altTags.push({
-        imgSrc: images[activeSlide],
-        descr: currentImgLabel
-      });
-      </code></pre>
+        <pre class="language-js"><code>altTags.push({
+  imgSrc: images[activeSlide],
+  descr: currentImgLabel
+});
+</code></pre>
         <p class=" lh-copy">
           For the script to be copied I ended up using the template string:
         </p>
-        <pre><code>
-{`&lt;script&gt;
+        <pre class="language-js"><code>{`&lt;script&gt;
 const altTags = [${altTags.map(tag => `\n  {"imgSrc": "${tag.imgSrc}", "descr": "${tag.descr}"}`)}
 ]
 &lt;/script&gt;`}
-      </code></pre>
+</code></pre>
         <p class=" lh-copy">
           To generate the following output:
         </p>
@@ -253,15 +263,15 @@ const altTags = [
           As I was packaging the project with Parcel, the generated static website was in the dist folder and I had to anticipate it when deploying the website with gh-pages, which usually just takes the index.html from the root folder as the entry point.
         </p>
         <p class="lh-copy">The solution was to push a git subtree to the <code>gh-pages</code> with the following script, saved in <code>package.json</code> scripts to reuse later:</p>
-        <pre><code>
-    "gh-publish": "git subtree push --prefix dist origin gh-pages"
-        </code></pre>
+        <pre class="language-json"><code>"gh-publish": "git subtree push --prefix dist origin gh-pages"</code></pre>
 
-    <section class="pb5">
+    <section class="pt5-l pt4">
       <h2 class="f2-ns f3">Overall result</h2>
 
       <p class="lh-copy ">The proof of concept for automatic ALT attributes generation app.</p>
     </section>
+        </div>
+      </div>
   </main>
   <footer class="flex flex-row-ns flex-column-reverse justify-center items-center pb4">
     <p class="f7">&copy; 2019 Korshunad</p>
@@ -279,5 +289,6 @@ const altTags = [
     </ul>
   </nav>
   </footer>
+    <script src="prism.js"></script>
 </body>
 </html>

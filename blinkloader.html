@@ -11,6 +11,8 @@
     <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
   <link rel="stylesheet" type="text/css" href="./slick/slick.css"/>
   <link rel="stylesheet" type="text/css" href="./slick/slick-theme.css"/>
+    <link href="prism.css" rel="stylesheet" />
+    <script src="./scrollMenu.js"></script>
 </head>
 <body class="mw9 center">
   <nav class="flex flex-row flex-nowrap-l flex-wrap items-center justify-between ph5-l ph4-m ph3 pv3">
@@ -55,58 +57,73 @@
       <h3 class="f3-ns f4 fw4 lh-copy">Front-end development for a SEO automation platform</h3>
       <button class="ttu tracked f3 br2" onclick="window.open('https://blinkloader.com')">Visit site</button>
       </div>
-      <img src="images/blinkloader.png" class="w-50-l w-100 h-auto"/>
+      <img src="images/blinkloader.png" class="w-50-l w-100 h-auto shadow"/>
     </section>
-    <section class="pv5">
+      <div class="relative flex flex-row-l flex-column overflow-visible">
+        <section class="sticky-l relative pv5-l pt4 h-100-l pr5-l">
+          <ul class="pl0 flex flex-column items-start">
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link active" data-href="#intro">Introduction</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#responsive">Responsive web layouts</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#loading">Loading states in apps</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#reusable">Reusable Components</a></li>
+          </ul>
+        </section>
+        <div class="flex flex-column">
+    <section class="pv5-l pt4 pb5 content" id="intro">
       <h2 class="f2-ns f3">Context</h2>
-      <p class="lh-copy ">
+      <p>
       In November 2017 I joined Blinkloader, a startup then dedicated to image optimization services. Since then the business focus of the company shifted multiple times, now focusing on the systematic SEO setup and maintenance for other startups.
       </p>
-      <p class="lh-copy ">
+      <p>
       I gained valuable experience and contributed to the web app development and solving various UI edge cases, including responsiveness and cross-browser design. The following examples will feature UI implemented for the changing product. </p>
       <h2 class="f2-ns f3">Overview</h2>
 
-      <p class="lh-copy ">Some of the interesting contributions I made while working in Blinkloader can be outlined as follows:</p>
-      <ul class="lh-copy ">
+      <p>Some of the interesting contributions I made while working in Blinkloader can be outlined as follows:</p>
+      <ul>
         <li>Responsive web layouts design and developement</li>
         <li>Loading states in apps</li>
-        <li>Developement of reusable React.js components</li>
+        <li>Development of reusable React.js components</li>
       </ul>
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4 content" id="responsive">
       <h2 class="f2-ns f3">Responsive web layouts design and development</h2>
       <h3 class="f3-ns f4">Problem</h3>
-      <p class="lh-copy ">Developing responsive web site and application was important in the company. The main challenge in building responsive pages in Blinkloader was to use few but clear styles. </p>
+      <p>Developing responsive web site and application was important in the company. The main challenge in building responsive pages in Blinkloader was to use few but clear styles. </p>
       <h3 class="f3-ns f4">Solution</h3>
-      <p class="lh-copy ">I used the tachyons CSS system, which promoted functional CSS approach and allowed to change most of the essential UI components characteristics (widths, heights, positions) with applying short classes. Ability to use flexbox for the website was useful as well, allowing to change minor properties, such as the direction of the flex element (row, column) to suit different screens.</p>
-      <p class="lh-copy ">The main focus in creating responsive layouts was to maintain initial desktop design aesthetic and make texts legible on small screens. Sometimes I had to introduce new elements, such as dropdown menu instead of the sidebar on the small screen. Hamburger button was avoided to provide immediate access to main pages categories. For tablet screens, I often had to develop another view to save space.</p>
-      <div class="responsive-carousel mw8" style="">
-        <div style="object-fit: contain;"><img class="w-100 h-auto mw7" src="images/login-desktop.png"></div>
-        <div style="object-fit: contain;"><img class="w-100 h-auto mw7" src="images/webscanner-desktop.png"></div>
-        <div style="object-fit: contain;"><img class="w-100 h-auto mw7" src="images/login-tablet.png"></div>
-        <div style="object-fit: contain;"><img class="w-100 h-auto mw7" src="images/webscanner-tablet.png"></div>
-        <div style="object-fit: contain;"><img class="w-100 h-auto mw5" src="images/login-mobile.png"></div>
-        <div style="object-fit: contain;"><img class="w-100 h-auto mw5" src="images/webscanner-mobile.png"></div>
+      <p>I used the tachyons CSS system, which promoted functional CSS approach and allowed to change most of the essential UI components characteristics (widths, heights, positions) with applying short classes. Ability to use flexbox for the website was useful as well, allowing to change minor properties, such as the direction of the flex element (row, column) to suit different screens.</p>
+      <p>The main focus in creating responsive layouts was to maintain initial desktop design aesthetic and make texts legible on small screens. Sometimes I had to introduce new elements, such as dropdown menu instead of the sidebar on the small screen. Hamburger button was avoided to provide immediate access to main pages categories. For tablet screens, I often had to develop another view to save space.</p>
+      <div class="responsive-carousel mw7" style="">
+        <div style="object-fit: contain;padding:1rem;"><img class="w-100 h-auto mw7 shadow" src="images/login-desktop.png"></div>
+        <div style="object-fit: contain;padding:1rem;"><img class="w-100 h-auto mw7 shadow" src="images/webscanner-desktop.png"></div>
+        <div style="object-fit: contain;padding:1rem;"><img class="w-100 h-auto mw7 shadow" src="images/login-tablet.png"></div>
+        <div style="object-fit: contain;padding:1rem;"><img class="w-100 h-auto mw7 shadow" src="images/webscanner-tablet.png"></div>
+        <div style="object-fit: contain;padding:1rem;"><img class="w-100 h-auto mw5 shadow" src="images/login-mobile.png"></div>
+        <div style="object-fit: contain;padding:1rem;"><img class="w-100 h-auto mw5 shadow" src="images/webscanner-mobile.png"></div>
       </div>
 
-      <p>These and other layouts were enabled by using as short lines of CSS classes, similar to this one: <pre class="w-100 overflow-x-scroll"><code>class="flex flex-row-ns flex-nowrap-l flex-wrap flex-column"</code></pre>. This line, for example, shifts from placing elements in a row to a wrappable row for medium-sized screens and typical 1-column layout for small screens.</p>
+      <p>These and other layouts were enabled by using as short lines of CSS classes, similar to this one: <pre class="w-100 overflow-x-scroll"><code>class="flex flex-row-ns flex-nowrap-l flex-wrap flex-column"</code></pre></p>
+      <p>This line, for example, shifts from placing elements in a row to a wrappable row for medium-sized screens and typical 1-column layout for small screens.</p>
 
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4  content" id="loading">
       <h2 class="f2-ns f3">Loading states in apps</h2>
       <h3 class="f3-ns f4">Problem</h3>
-        <p class=" lh-copy">
+        <p>
         Working with APIs requires to account for the cases when there is no data yet, the data is loading, the data is loaded or could not be loaded/was empty.
         </p>
       <h3 class="f3-ns f4">Solution</h3>
-        <p class=" lh-copy">
+        <p>
  While working in Blinkloader, we used various solutions for implementing loading states in an app.
         </p>
-        <p class=" lh-copy">
+        <p>
         One of them was the usage of the SVG placeholders with animated gradient, to create an illusion of faster loading. I used <a href="https://github.com/danilowoz/react-content-loader" target="_blank" rel="noopener noreferrer">react-content-loader</a> to build the previews for all the elements in the dashboard, preventing “jumps” on the page when some data is loaded.
         </p>
-      <iframe width="100%" height="600px" src="https://www.youtube.com/embed/eKN3F2ejRXY" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-        <p class=" lh-copy">
+      <iframe width="100%" height="600px" src="https://www.youtube.com/embed/eKN3F2ejRXY?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <p>
         Another one used in the Website Scanner right now is to create a separate loading state for each component, accounting for its specifics.
         </p>
         <div class="flex flex-row justify-betwen flex-wrap">
@@ -120,29 +137,31 @@
         </div>
         </div>
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4  content" id="reusable">
       <h2 class="f2-ns f3">Reusable components</h2>
       <h3 class="f3-ns f4">Problem</h3>
-        <p class=" lh-copy">
+        <p>
         Reusable components is the very basis of React.js development. However, just creating reusable components in the project folder may invoke chaos and still bring up inconsistencies in design and functionality of a website or an app.
         </p>
       <h3 class="f3-ns f4">Solution</h3>
-        <p class=" lh-copy">
+        <p>
  To maintain consistent design, we used the storybook tool to specifically develop and test some common components, when the design was known beforehand.
         </p>
-        <p class=" lh-copy">
+        <p>
           Initially, we used it with React.js, then with Preact.js. Below is the list of reusable components I made for the first dashboard iteration. The design was a joint team effort. One of the challenges for this iteration of components was to build tabs component without using Javascript, only using CSS.
         </p>
-        <img class="w-100 h-auto mw7" src="images/csstabs.png"/>
-        <p class=" lh-copy">
-          This is a demo of the CSS only tab component applied on <a href="blinkloader.com/image-optimization/" target="_blank" rel="noopener noreferrer">the Image Optimization page</a>.
+        <img class="w-100 h-auto mw7 shadow" src="images/csstabs.png"/>
+        <p>
+          This is a demo of the CSS only tab component applied on <p class="di"><a href="https://blinkloader.com/image-optimization/" target="_blank" rel="noopener noreferrer">the Image Optimization page</a>.</p>
         </p>
     </section>
-    <section class="pb5">
+    <section class="pt5-l pt4">
       <h2 class="f2-ns f3">Overall result</h2>
 
-      <p class="lh-copy ">Come visit <a href="https://blinkloader.com" target="_blank" rel="noopener noreferrer">blinkloader.com</a> and give the beta a try</p>
+      <p>Come visit <a href="https://blinkloader.com" target="_blank" rel="noopener noreferrer">blinkloader.com</a> and give the beta a try</p>
     </section>
+        </div>
+      </div>
   </main>
   <footer class="flex flex-row-ns flex-column-reverse justify-center items-center pb4">
     <p class="f7">&copy; 2019 Korshunad</p>
@@ -177,5 +196,6 @@
       });
     });
   </script>
+  <script src="prism.js"></script>
 </body>
 </html>
