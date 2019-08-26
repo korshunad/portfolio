@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>ExpressCDN ● Ana Makarochkina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet"  type="text/css" href="main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+    <script src="scrollMenu.js"></script>
+  </head>
+  <body class="mw9 center">
+    <nav class="flex flex-row flex-nowrap-l flex-wrap items-center justify-between ph5-l ph4-m ph3 pv3">
+      <div class="flex flex-row justify-start w-100-ns w-50 mw5-l items-center w-auto-m">
+        <a href="index.html">
+          <img src="images/logo.svg" class="mw4 w-100 h-auto" alt="Korshunad logo of Ana Makarochkina"/>
+        </a>
+      </div>
+      <ul class="dn-ns flex flex-row-l flex-column justify-between items-stretch-l items-start mw5-l w-100-ns w-50 mw3 pl4-l pl0">
+        <li>
+          <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+            Hire Me
+          </a>
+        </li>
+        <li>
+          <a href="about.html" title="About Ana Makarochkina" class="link"/>
+            About
+          </a>
+        </li>
+      </ul>
+      <div class="flex flex-column justify-center items-center pt0-ns pt4  w-100">
+        <span class='b f4'>Ana Makarochkina</span>
+        <span class="fw3 f4">Frontend Developer</span>
+      </div>
+      <ul class="flex-ns dn flex-row-l flex-column justify-between items-stretch-l items-start mw5-l w-100 mw3-m pl4-l pl0">
+        <li>
+          <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+            Hire Me
+          </a>
+        </li>
+        <li>
+          <a href="about.html" title="About Ana Makarochkina" class="link"/>
+            About
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main class="ph5-l ph4-m ph3 pv3">
+      <section class="flex flex-row-l flex-column-reverse items-end ">
+        <div class="w-50-l w-100">
+          <h1 class="f1-ns f2 mb0 lh-title">ExpressCDN</h1>
+          <h3 class="f3-ns f4 fw4 lh-copy">Drag and drop image / CSS / JS files optimizer ❤️</h3>
+          <button class="ttu tracked f3 br2" onclick="window.open('https://blinkloader.com/express-cdn/')">Visit site</button>
+        </div>
+        <img src="images/expresscdn-screen.png" class="w-50-l w-100 h-auto shadow"/>
+      </section>
+      <div class="relative flex flex-row-l flex-column overflow-visible">
+        <section class="sticky-l relative pv5-l pt4 h-100-l pr5-l">
+          <ul class="pl0 flex flex-column items-start">
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link active" data-href="#intro">Introduction</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#overview">Overview</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#result">Overall Result</a></li>
+          </ul>
+        </section>
+        <div class="flex flex-column">
+          <section class="pv5-l pt4 pb5 content" id="intro">
+            <h2 class="f2-ns f3">Context</h2>
+            <p>
+            ExpressCDN is one of the projects we’ve been working on in Blinkloader, a small app meant to drive traffic to the platform. I worked together with our backend developer, Yarik Bratashchuk, and under the guidance of our lead frontend developer, Max Makarochkin. My responsibilities were to implement the UI, estimate the data structure for the API, and deliver consistent user experience using Preact.js. </p><p>After the initial working prototype was finished, we all worked together on integrating the app into the website as needed.
+            </p>
+          </section>
+          <section class="pv5-l pt4 pb5 content" id="overview">
+            <h2 class="f2-ns f3">Overview</h2>
+            <h3 class="f3-ns f4">Problems and Solutions</h3>
+            <ul>
+            <li>
+            No Dropzone plugin for preact.js, the existing one was a pull request and is not working as a plugin -> solved by just taking the code from the pull request;
+            </li>
+            <li>
+            Scroll to file when the file is dropped -> use window.scrollTo and refs to target a specific element;
+            </li>
+            <li>
+            File size to display research -> use 1024 base to be more accurate;
+            </li>
+            <li>
+            Submitting the files -> convert to Base64 string;
+            </li>
+            <li>
+            Collaborating with the backend engineer -> discuss the API, create the sample data structure to be used for API 
+            </li>
+            <li>
+            Loading state/responsiveness -> design and implement UI variations
+            </li>
+            <li>
+            Integrate copying functionality ->  use Clipboard.js as the existing react plugin was not applicable for Preact.js app.
+            </li>
+</ul>
+</section>
+          <section class="pt5-l pt4  content" id="result">
+            <h2 class="f2-ns f3">Overall result</h2>
+            <p>
+            Working and easy to use and understand app that delivers links to optimized files. The users can use those links in the website right away with the HTML tags we provide or download the files.
+
+            </p>
+        <div class="w-40-l w-100">
+        <blockquote class="twitter-tweet" data-lang="ru"><p lang="en" dir="ltr">Hey all! We are happy to showcase one of the new features we&#39;ve been working on 🤓<br><br>☄️ Drop an SVG file to our Express CDN app<br>⚡️ Get lightning fast optimized SVG<br>🔥 Download or use our CDN link with generated HTML tags<a href="https://t.co/gqSy5Bj9pH">https://t.co/gqSy5Bj9pH</a> <a href="https://t.co/qtuGKPLfat">pic.twitter.com/qtuGKPLfat</a></p>&mdash; Blinkloader (@blinkloader) <a href="https://twitter.com/blinkloader/status/1088669291967262721?ref_src=twsrc%5Etfw">25 января 2019 г.</a></blockquote>
+        <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        </div>
+            </div>
+
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="flex flex-row-ns flex-column-reverse justify-center items-center pb4">
+      <p class="f7">&copy; 2019 Korshunad</p>
+      <ul class="flex flex-row mv4-l mv0 flex-wrap justify-between mw5-l pa0 ml4-ns">
+        <li>
+          <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+            Hire Me
+          </a>
+        </li>
+        <li>
+          <a href="index.html" title="About Ana Makarochkina" class="link"/>
+            Projects
+          </a>
+        </li>
+      </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
