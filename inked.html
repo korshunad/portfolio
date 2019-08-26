@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Invoice App ● Ana Makarochkina</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+
+    <link rel="stylesheet"  type="text/css" href="main.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,600&display=swap" rel="stylesheet">
+    <script src="scrollMenu.js"></script>
+  </head>
+  <body class="mw9 center">
+    <nav class="flex flex-row flex-nowrap-l flex-wrap items-center justify-between ph5-l ph4-m ph3 pv3">
+      <div class="flex flex-row justify-start w-100-ns w-50 mw5-l items-center w-auto-m">
+        <a href="index.html">
+          <img src="images/logo.svg" class="mw4 w-100 h-auto" alt="Korshunad logo of Ana Makarochkina"/>
+        </a>
+      </div>
+      <ul class="dn-ns flex flex-row-l flex-column justify-between items-stretch-l items-start mw5-l w-100-ns w-50 mw3 pl4-l pl0">
+        <li>
+          <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+            Hire Me
+          </a>
+        </li>
+        <li>
+          <a href="about.html" title="About Ana Makarochkina" class="link"/>
+            About
+          </a>
+        </li>
+      </ul>
+      <div class="flex flex-column justify-center items-center pt0-ns pt4  w-100">
+        <span class='b f4'>Ana Makarochkina</span>
+        <span class="fw3 f4">Frontend Developer</span>
+      </div>
+      <ul class="flex-ns dn flex-row-l flex-column justify-between items-stretch-l items-start mw5-l w-100 mw3-m pl4-l pl0">
+        <li>
+          <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+            Hire Me
+          </a>
+        </li>
+        <li>
+          <a href="about.html" title="About Ana Makarochkina" class="link"/>
+            About
+          </a>
+        </li>
+      </ul>
+    </nav>
+    <main class="ph5-l ph4-m ph3 pv3">
+      <section class="flex flex-row-l flex-column-reverse items-end ">
+        <div class="w-50-l w-100">
+          <h1 class="f1-ns f2 mb0 lh-title">Inked drag'n'drop app</h1>
+          <h3 class="f3-ns f4 fw4 lh-copy">Try-on tattoo app and website prototype</h3>
+          <button class="ttu tracked f3 br2" onclick="window.open('https://korshunad.github.io/inked_website/tattoo-preview.html')">Visit site</button>
+        </div>
+        <img src="images/inked-screen.png" class="w-50-l w-100 h-auto shadow"/>
+      </section>
+      <div class="relative flex flex-row-l flex-column overflow-visible">
+        <section class="sticky-l relative pv5-l pt4 h-100-l pr5-l">
+          <ul class="pl0 flex flex-column items-start">
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link active" data-href="#intro">Introduction</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#overview">Overview</a></li>
+            <li onclick="scrollSectionIntoView(this);">
+              <a class="link flex" data-href="#result">Overall Result</a></li>
+          </ul>
+        </section>
+        <div class="flex flex-column">
+          <section class="pv5-l pt4 pb5 content" id="intro">
+            <h2 class="f2-ns f3">Context</h2>
+            <p>
+            Inked website was a collaborative group project in a group of 5 people, aiming to learn agile methodology. I was responsible for creating the wireframes when given the sitemap of the website and thinking through the potential functionality of the try-on tattoo web app. After collecting content and designs, I proceeded to code the prototype of the website, having a couple of days to do it.
+            </p>
+          </section>
+          <section class="pv5-l pt4 pb5 content" id="overview">
+            <h2 class="f2-ns f3">Overview</h2>
+            <p>
+            An interesting thing about this project is how reframing the problem can help to solve it. When first approached with “tattoo try-on/ preview” idea all I thought about was the complex 3d models and mapping the uploaded images on their surface, or existing AR apps for trying on in real-time. However, for the scope of the school project simple drag and drop with overlaying one image over another was enough, so I proceeded with that, using jquery UI for simplicity.
+            </p>
+            <h3 class="f3-ns f4">Problems and Solutions</h3>
+            <ul>
+            <li>
+            Uploading a design and making it draggable -> use HTML5 upload file API and jquery UI to make drag and drop events easier
+            </li>
+            <li>
+            Resizing the tattoos for the specific bodyparts -> attach resizing script to the range input element
+            </li>
+            <li>
+            Drag’n’drop HTML5 functionality not working on mobile -> use jquery UI polyfill
+            </li>
+</ul>
+</section>
+          <section class="pt5-l pt4  content" id="result">
+            <h2 class="f2-ns f3">Overall result</h2>
+            <p>
+            The prototype of the try-on web app, which also works on mobile, and the prototype of the tattoo convention website.
+
+            </p>
+
+            <iframe width="100%" height="600" src="https://www.youtube.com/embed/iUJ2pVptNWI?rel=0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </section>
+        </div>
+      </div>
+    </main>
+    <footer class="flex flex-row-ns flex-column-reverse justify-center items-center pb4">
+      <p class="f7">&copy; 2019 Korshunad</p>
+      <ul class="flex flex-row mv4-l mv0 flex-wrap justify-between mw5-l pa0 ml4-ns">
+        <li>
+          <a href="hire-me.html" title="Ana contact for hiring" class="link"/>
+            Hire Me
+          </a>
+        </li>
+        <li>
+          <a href="index.html" title="About Ana Makarochkina" class="link"/>
+            Projects
+          </a>
+        </li>
+      </ul>
+      </nav>
+    </footer>
+  </body>
+</html>
